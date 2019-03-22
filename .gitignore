@@ -1,0 +1,6 @@
+.vs/
+.vscode/
+
+**/bin
+**/obj
+**/Properties
