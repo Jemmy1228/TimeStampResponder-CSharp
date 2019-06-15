@@ -100,9 +100,9 @@ namespace LibTimeStamp
             CmsSignedDataGenerator generator = new CmsSignedDataGenerator();
             generator.AddSignerInfoGenerator(signerInfoBuilder.Build(signatureFactory, x509Cert));
             generator.AddCertificates(x509Store);
-            byte[] result = generator.Generate(new CmsProcessableByteArray(octets), true).GetEncoded();
+            CmsSignedData cmsSignedData = generator.Generate(new CmsProcessableByteArray(octets), true);
+            byte[] result = cmsSignedData.ContentInfo.GetEncoded("DER");
             return Encoding.ASCII.GetBytes(Convert.ToBase64String(result).ToArray());
-            
         }
     }
 }
